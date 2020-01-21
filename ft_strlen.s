@@ -2,18 +2,23 @@ section.text
 	global _ft_strlen
 
 _ft_strlen:
-	mov RAX, 0 ;c'est mon i qui va etre incremente
-
+	;passage de param par pile (stack) -> RSP sert a indiquer l'adresse du sommet d'une pile. La pile est composee de cadres de pile, ou stack frames, piur chaque fonction en cours d'appel avec ses variables locales.
+	;on lit le contenu de la pile grace a un registre special : BP ->pour stack frame
+	;MOV BP, SP fait pointer BP sur le sommet de la stack
+	; commencer par push rbp, puis mov rbp, rsp
+	MOV RAX, 0 ;c'est mon i qui va etre incremente
 	;RDI registre qui stocke le premier argument d'une fonction
 	;indicateur ZF = 1 si egalite. ZF permet de savoir si le resultat de ;a derniere operation etait nul.
-	CMP RDI, 0 ;quel registre contient le result de ma comparaison, comment comparer mon char et l'incrementer?
-	JNE adress;jump if not equal, saute a l'adresse si ZF = 0, ca s'arrete si ZF = 1
-	;jump adresse, RIP contient alors adresse, registre RIP indique adresse suivante a executer
-adress:
+;mettre increment avant sinon ne marche pas, car alors RPI va a end et pas a comp
+inc:
 	INC RAX
+comp:
+	CMP BYTE [RDI + RAX], 0  ;byte caste en un octet
+	JNE inc;jump if not equal, saute a l'adresse si ZF = 0, ca s'arrete si ZF = 1
+	;jump adresse, RIP contient alors adresse, registre RIP indique adresse suivante a executer
 end:
 	ret
 ;je return ce qui est dans RAX, calling convention
-;check stack frame, leave + ret
 
+;check stack frame, leave + ret
 ;section data vs section bss
