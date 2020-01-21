@@ -7,6 +7,8 @@ _ft_strlen:
 	;MOV BP, SP fait pointer BP sur le sommet de la stack
 	; commencer par push rbp, puis mov rbp, rsp
 	MOV RAX, 0 ;c'est mon i qui va etre incremente
+	CMP	RDI, 0					; !rdi
+	je end
 	;RDI registre qui stocke le premier argument d'une fonction
 	;indicateur ZF = 1 si egalite. ZF permet de savoir si le resultat de ;a derniere operation etait nul.
 ;mettre increment avant sinon ne marche pas, car alors RPI va a end et pas a comp
@@ -19,6 +21,7 @@ comp:
 end:
 	ret
 ;je return ce qui est dans RAX, calling convention
+;le vrai strlen return-til 0 si ligne NULL?
 
 ;check stack frame, leave + ret
 ;section data vs section bss
