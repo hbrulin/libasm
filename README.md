@@ -94,7 +94,7 @@ Scan byte par byte : \
 ```asm
 	repnz scasb
 ```
-Fin:
+Fin: \
 	- on réinverse rcx avec 'not' pour avoir la valeur du compteur. \
 	On peut la décrémenter si besoin de retirer \0. 
 
