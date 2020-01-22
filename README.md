@@ -7,7 +7,7 @@ brew install nasm
 
 #compiling \
 nasm -f macho64 test.s -o test.o \
-#macho64 is object file for mac os 
+macho64 is object file for mac os 
 
 #Prologue \
 Passage de paramètres par pile/stack. \
