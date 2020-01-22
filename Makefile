@@ -5,16 +5,16 @@ SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s
 SFLAGS = -f macho64
 CFLAGS = -Wall -Werror -Wextra
 
-OBJS =	$(SRCS:.o=.s)
+OBJS =	$(SRCS:.s=.o)
 
 all : $(NAME)
 
 $(NAME): $(OBJ) Makefile
-	ar -rc $(NAME) $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 	@echo "$(NAME) created"
 
-$(OBJ)/%.o:%.s
-	nasm $(SFLAGS) $< $@
+$(OBJ)%.o: %.s
+	nasm $(SFLAGS) $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJS)
