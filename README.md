@@ -14,20 +14,20 @@ Passage de paramètres par pile/stack. \
 RSP : indique l'adresse du sommet de la stack. \
 La stack est composée de stack frames, pour chaque fonction en cours d'appel avec ses variables locales. \
 On lit le contenu de la stack frame avec RBP. \
-// \
-_global_start : \
-	push rbp		;fait pointer RBP sur le sommet de la stack - sauvegarde \
-	mov rbp, rsp \
-// \
+<code>
+_global_start : 
+	push rbp		;fait pointer RBP sur le sommet de la stack - sauvegarde 
+	mov rbp, rsp 
+</code>
 The prologue sets-up the stack frame for the function by saving (push) the base \
 pointer to the stack and moving the base pointer to the top of the stack. \
 Bonne pratique pour garder trace stack. 
 
 <strong>#Epilogue</strong> \
-// \
+<code>
 	leave \
 	ret \
-// \
+</code>
 The epilogue cleans up the stack frame and restores the stack and base pointers to the pre-call values and jumps to the saved return address. \
 leave remet la stack à l'état initial -> pop rbp. On récupère rbp.
 
@@ -60,9 +60,11 @@ Les jump conditionnels vont changer le registre RIP, qui stocke l'adresse suivan
 
 <strong>#Acces à un caractère d'une string - Pointer Directives</strong> \
 	- opérateur BYTE - caste en un octet \
-Ex : \
-	cmp BYTE [rdi + rcx], 0 \
-	je end \
+Ex : 
+<code>
+	cmp BYTE [rdi + rcx], 0 
+	je end 
+</code>
 rcx etant un compteur qu'on peut incrementer. peut être rax si c'est la valeur incrémentée qu'on souhaite retourner (ex :ft_strlen). 
 
 Egalement : \
@@ -75,9 +77,11 @@ Permet de scanner une string byte par byte, avec une condition, sans devoir gér
 Mix entre jump conditionnel et BYTE. \
 Préalable : \
 	-	le scan va utiliser RCX comme compteur. Il va le décrémenter au lieu de l'incrémenter. On le met donc au maximum (valeur maximum pour un registre 64 bits), en le mettant à 0 puis en inversant tous ses bits (de 0 à 1). \
-	Ex : \
-		mov rcx 0 \
-		not rcx \
+	Ex : 
+	<code>
+		mov rcx 0 
+		not rcx 
+	</code>
 	-	l'indicateur DF - Direction Flag _ spécifie la direction dans laquelle la string sera lue. Il faut le mettre à 0 (en cas de modif préalable) pour qu'elle soit lue de gauche à droite, avec 'cld'. \
 	'cld' met le DF à 0 pour RDI et RSI à la fois. \
 Scan byte par byte :
@@ -85,8 +89,10 @@ Scan byte par byte :
 	- l'opérateur 'repnz'(repeat if not zero) : tant que le byte n'est pas egal à 0 (comme pour jz, peu importe valeur de ZF, on regarde la valeur réelle du byte), repeat. \
 	Le byte scanné est incrémenté tout seul. \
 	rcx est décrémenté tout seul. \
-	Ex: \
-		< repnz scasb > \
+	Ex: 
+	<code>
+		< repnz scasb > 
+	</code>
 Fin:
 	- on réinverse rcx avec 'not' pour avoir la valeur du compteur. \
 	On peut la décrémenter si besoin de retirer \0. 
@@ -103,10 +109,12 @@ Autres opérateurs :
 
 <strong>#Appeler une fonction externe</strong>
 	- déclarer la fonction sous la déclaration de la section. \
-	Ex : \
-		section .text \
-			global _ft_strdup \
-			extern _ft_strlen \
+	Ex : 
+	<code>
+		section .text 
+			global _ft_strdup 
+			extern _ft_strlen 
+	</code>
 	- Appel : 'call _ft_strlen'. Ce call va prendre en argument ce qu'il y a dans rdi, si la fonction prend un argument. Puis rsi si 2 arguments appelés etc.... - Verifier si ordre kernel ou ordre "user application". \
 	- la fonction return dans rax. \
 	- Avant d'appeler la fonction qui appelle rdi, si on veut sauver un rdi précédent : push rdi. Puis après appel fonction, pop rdi. \
@@ -118,8 +126,10 @@ Autres opérateurs :
 
 <strong>#Pratiques</strong> \
 	- Check if nul : \
-		cmp	rdi, 0 \
+	<code>
+		cmp	rdi, 0 
 		je end 
+	</code>
 
 <strong>#Ressources</strong> 
 - list of x86 instructions : https://c9x.me/x86/ \
