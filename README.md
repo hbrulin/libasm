@@ -85,7 +85,7 @@ Préalable : \
 -	l'indicateur DF - Direction Flag _ spécifie la direction dans laquelle la string sera lue. Il faut le mettre à 0 (en cas de modif préalable) pour qu'elle soit lue de gauche à droite, avec 'cld'. \
 	'cld' met le DF à 0 pour RDI et RSI à la fois. \
 
-Scan byte par byte :
+Scan byte par byte : \
 	- l'operateur 'scasb' prend le premier byte de rdi (sans besoin de le spécifier). Si je veux utiliser rsi ou autre registre, il faut mov dans rdi. \
 	- l'opérateur 'repnz'(repeat if not zero) : tant que le byte n'est pas egal à 0 (comme pour jz, peu importe valeur de ZF, on regarde la valeur réelle du byte), repeat. \
 	Le byte scanné est incrémenté tout seul. \
