@@ -109,7 +109,7 @@ Autres opérateurs :
 
 <strong>#Appeler une fonction externe</strong> \
 	- déclarer la fonction sous la déclaration de la section. \
-	Ex : 
+	Ex : \
 	```asm
 		section .text 
 			global _ft_strdup 
