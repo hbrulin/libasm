@@ -14,11 +14,11 @@ Passage de paramètres par pile/stack. \
 RSP : indique l'adresse du sommet de la stack. \
 La stack est composée de stack frames, pour chaque fonction en cours d'appel avec ses variables locales. \
 On lit le contenu de la stack frame avec RBP. \
-<code>
+```asm
 _global_start : 
 	push rbp		;fait pointer RBP sur le sommet de la stack - sauvegarde 
 	mov rbp, rsp 
-</code>
+```
 The prologue sets-up the stack frame for the function by saving (push) the base \
 pointer to the stack and moving the base pointer to the top of the stack. \
 Bonne pratique pour garder trace stack. 
@@ -107,7 +107,7 @@ Autres opérateurs :
 	- le syscall va récupérer tout seul les arguments qui sont dans les registres : rdi (arg1), rsi (arg2), rdx (arg3), r10 (arg4), r8 (arg5), r9 (arg6) - kernel space order, pas le même que le user space order. \
 	- rax prend le retour du syscall. Pour write ou read, nb de bytes écrites ou lues. 
 
-<strong>#Appeler une fonction externe</strong>
+<strong>#Appeler une fonction externe</strong> \
 	- déclarer la fonction sous la déclaration de la section. \
 	Ex : 
 	<code>
