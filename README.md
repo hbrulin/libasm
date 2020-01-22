@@ -23,10 +23,10 @@ The prologue sets-up the stack frame for the function by saving (push) the base 
 pointer to the stack and moving the base pointer to the top of the stack. \
 Bonne pratique pour garder trace stack. 
 
-<strong>#Epilogue</strong> \
+<strong>#Epilogue</strong> 
 ```asm
-	leave \
-	ret \
+	leave 
+	ret 
 ```
 The epilogue cleans up the stack frame and restores the stack and base pointers to the pre-call values and jumps to the saved return address. \
 leave remet la stack à l'état initial -> pop rbp. On récupère rbp.
