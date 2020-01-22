@@ -10,18 +10,18 @@ nasm -f macho64 test.s -o test.o \
 #macho64 is object file for mac os \
 
 #Prologue \
-Passage de paramètres par pile/stack.
-RSP : indique l'adresse du sommet de la stack.
-La stack est composée de stack frames, pour chaque fonction en cours d'appel avec ses variables locales.
-On lit le contenu de la stack frame avec RBP.
+Passage de paramètres par pile/stack. \
+RSP : indique l'adresse du sommet de la stack. \
+La stack est composée de stack frames, pour chaque fonction en cours d'appel avec ses variables locales. \
+On lit le contenu de la stack frame avec RBP. \
 //
 _global_start :
-	push rbp		;fait pointer RBP sur le sommet de la stack - sauvegarde
-	mov rbp, rsp
+	push rbp		;fait pointer RBP sur le sommet de la stack - sauvegarde \
+	mov rbp, rsp \
 //
-The prologue sets-up the stack frame for the function by saving (push) the base
-pointer to the stack and moving the base pointer to the top of the stack.
-Bonne pratique pour garder trace stack.
+The prologue sets-up the stack frame for the function by saving (push) the base \
+pointer to the stack and moving the base pointer to the top of the stack. \
+Bonne pratique pour garder trace stack. \
 
 #Epilogue \
 //
