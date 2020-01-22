@@ -78,10 +78,10 @@ Mix entre jump conditionnel et BYTE. \
 Préalable : \
 	-	le scan va utiliser RCX comme compteur. Il va le décrémenter au lieu de l'incrémenter. On le met donc au maximum (valeur maximum pour un registre 64 bits), en le mettant à 0 puis en inversant tous ses bits (de 0 à 1). \
 	Ex : 
-	```asm
-		mov rcx 0 
-		not rcx 
-	```
+```asm
+	mov rcx 0 
+	not rcx 
+```
 	-	l'indicateur DF - Direction Flag _ spécifie la direction dans laquelle la string sera lue. Il faut le mettre à 0 (en cas de modif préalable) pour qu'elle soit lue de gauche à droite, avec 'cld'. \
 	'cld' met le DF à 0 pour RDI et RSI à la fois. \
 Scan byte par byte :
@@ -90,9 +90,9 @@ Scan byte par byte :
 	Le byte scanné est incrémenté tout seul. \
 	rcx est décrémenté tout seul. \
 	Ex: 
-	```asm
-		< repnz scasb > 
-	```
+```asm
+	repnz scasb
+```
 Fin:
 	- on réinverse rcx avec 'not' pour avoir la valeur du compteur. \
 	On peut la décrémenter si besoin de retirer \0. 
@@ -110,11 +110,11 @@ Autres opérateurs :
 <strong>#Appeler une fonction externe</strong> \
 	- déclarer la fonction sous la déclaration de la section. \
 	Ex : \
-	```asm
-		section .text 
-			global _ft_strdup 
-			extern _ft_strlen 
-	```
+```asm
+	section .text 
+		global _ft_strdup 
+		extern _ft_strlen 
+```
 	- Appel : 'call _ft_strlen'. Ce call va prendre en argument ce qu'il y a dans rdi, si la fonction prend un argument. Puis rsi si 2 arguments appelés etc.... - Verifier si ordre kernel ou ordre "user application". \
 	- la fonction return dans rax. \
 	- Avant d'appeler la fonction qui appelle rdi, si on veut sauver un rdi précédent : push rdi. Puis après appel fonction, pop rdi. \
@@ -126,10 +126,10 @@ Autres opérateurs :
 
 <strong>#Pratiques</strong> \
 	- Check if nul : \
-	```asm
-		cmp	rdi, 0 
-		je end 
-	```
+```asm
+	cmp	rdi, 0 
+	je end 
+```
 
 <strong>#Ressources</strong> 
 - list of x86 instructions : https://c9x.me/x86/ \
