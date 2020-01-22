@@ -6,17 +6,17 @@ _ft_strlen:
 	;on lit le contenu de la pile grace a un registre special : BP ->pour stack frame
 	;MOV BP, SP fait pointer BP sur le sommet de la stack
 	; commencer par push rbp, puis mov rbp, rsp
-	MOV RAX, 0 ;c'est mon i qui va etre incremente
-	CMP	RDI, 0					; !rdi
+	mov rax, 0 ;c'est mon i qui va etre incremente
+	cmp	rdi, 0					; !rdi
 	je end
 	;RDI registre qui stocke le premier argument d'une fonction
 	;indicateur ZF = 1 si egalite. ZF permet de savoir si le resultat de ;a derniere operation etait nul.
 ;mettre increment avant sinon ne marche pas, car alors RPI va a end et pas a comp
 inc:
-	INC RAX
+	inc rax
 comp:
-	CMP BYTE [RDI + RAX], 0  ;byte caste en un octet
-	JNE inc;jump if not equal, saute a l'adresse si ZF = 0, ca s'arrete si ZF = 1
+	cmp BYTE [rdi + rax], 0  ;byte caste en un octet
+	jne inc;jump if not equal, saute a l'adresse si ZF = 0, ca s'arrete si ZF = 1
 	;jump adresse, RIP contient alors adresse, registre RIP indique adresse suivante a executer
 end:
 	ret
