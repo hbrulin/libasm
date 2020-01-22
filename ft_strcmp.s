@@ -29,15 +29,9 @@ comp:
 ;last char : pas besoin
 
 calc:
-;comment gerer l'unsigned char?
+;comment gerer l'unsigned char? RESTE CA
 	sub dl, dh
 	movsx rax, dl ;instruction qui permet de copier un registre de taille inf
 
 return:
 	ret
-
-
-;if (*c1 != *c2)
-;	return (*c1 - *c2);
-;	c1++;
-;	c2++;
