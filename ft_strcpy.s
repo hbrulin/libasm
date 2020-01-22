@@ -1,4 +1,4 @@
-section.text
+section .text
 	global _ft_strcpy
 
 ;rsi arg2

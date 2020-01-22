@@ -1,4 +1,4 @@
-section.text
+section .text
 	global _ft_strcmp
 
 _ft_strcmp:
@@ -29,7 +29,6 @@ comp:
 ;last char : pas besoin
 
 calc:
-;comment gerer l'unsigned char? RESTE CA
 	sub dl, dh
 	movsx rax, dl ;instruction qui permet de copier un registre de taille inf
 

@@ -9,11 +9,11 @@ OBJS =	$(SRCS:.s=.o)
 
 all : $(NAME)
 
-$(NAME): $(OBJ) Makefile
+$(NAME): $(OBJS) Makefile
 	ar rcs $(NAME) $(OBJS)
 	@echo "$(NAME) created"
 
-$(OBJ)%.o: %.s
+%.o: %.s
 	nasm $(SFLAGS) $< -o $@
 
 clean:
@@ -25,7 +25,8 @@ fclean: clean
 	@echo "lib deleted"
 
 test:
-	gcc $(CFLAGS) main.c $(NAME)
+	gcc -c main.c
+	gcc $(CFLAGS) main.o $(NAME)
 
 re : 
 	@make fclean all
