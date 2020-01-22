@@ -63,7 +63,7 @@ Les jump conditionnels vont changer le registre RIP, qui stocke l'adresse suivan
 Ex : \
 	cmp BYTE [rdi + rcx], 0 \
 	je end \
-rcx etant un compteur qu'on peut incrementer. peut être rax si c'est la valeur incrémentée qu'on souhaite retourner (ex :ft_strlen). \
+rcx etant un compteur qu'on peut incrementer. peut être rax si c'est la valeur incrémentée qu'on souhaite retourner (ex :ft_strlen). 
 
 Egalement : \
 	- Word - 2 bytes \
@@ -89,9 +89,9 @@ Scan byte par byte :
 		< repnz scasb > \
 Fin:
 	- on réinverse rx avec <not> pour avoir la valeur du compteur. \
-	On peut la décrémenter si besoin de retirer \0. \
+	On peut la décrémenter si besoin de retirer \0. 
 
-Autres opérateurs : \
+Autres opérateurs : 
 - scasw (word by word, 2 bytes), scasd (4 bytes at a time). Tjrs sur RDI. \
 - rep, repe (repeat if equality), repne (repeat if not equlity), repnz (repeat if not zero) 
 
@@ -101,7 +101,8 @@ Autres opérateurs : \
 	- le syscall va récupérer tout seul les arguments qui sont dans les registres : rdi (arg1), rsi (arg2), rdx (arg3), r10 (arg4), r8 (arg5), r9 (arg6) - kernel space order, pas le même que le user space order. \
 	- rax prend le retour du syscall. Pour write ou read, nb de bytes écrites ou lues. 
 
-#Appeler une fonction externe \ 
+#Appeler une fonction externe
+
 	- déclarer la fonction sous la déclaration de la section. \
 	Ex : \
 		section .text \
@@ -121,7 +122,7 @@ Autres opérateurs : \
 		cmp	rdi, 0 \
 		je end 
 
-#Ressources \
+#Ressources 
 - list of x86 instructions : https://c9x.me/x86/ \
 - calling conventions : https://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-i386-and-x86-6 \
 - calling conventions : https://courses.cs.washington.edu/courses/cse378/10au/sections/Section1_recap.pdf \
