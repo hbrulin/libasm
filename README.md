@@ -24,10 +24,10 @@ pointer to the stack and moving the base pointer to the top of the stack. \
 Bonne pratique pour garder trace stack. 
 
 <strong>#Epilogue</strong> \
-<code>
+```asm
 	leave \
 	ret \
-</code>
+```
 The epilogue cleans up the stack frame and restores the stack and base pointers to the pre-call values and jumps to the saved return address. \
 leave remet la stack à l'état initial -> pop rbp. On récupère rbp.
 
@@ -45,7 +45,7 @@ Operateurs inc, dec.
 
 <strong>#mov</strong> \
 	- mov : necessite registre de tailles égales \
-	- movsx : permet de copier un registre de taille inférieure : <movsx rax, dl> 
+	- movsx : permet de copier un registre de taille inférieure : <code> movsx rax, dl </code> 
 
 <strong>#Jump</strong> \
 	- jmp -> jump à une adresse sans condition
@@ -61,10 +61,10 @@ Les jump conditionnels vont changer le registre RIP, qui stocke l'adresse suivan
 <strong>#Acces à un caractère d'une string - Pointer Directives</strong> \
 	- opérateur BYTE - caste en un octet \
 Ex : 
-<code>
+```asm
 	cmp BYTE [rdi + rcx], 0 
 	je end 
-</code>
+```
 rcx etant un compteur qu'on peut incrementer. peut être rax si c'est la valeur incrémentée qu'on souhaite retourner (ex :ft_strlen). 
 
 Egalement : \
@@ -78,10 +78,10 @@ Mix entre jump conditionnel et BYTE. \
 Préalable : \
 	-	le scan va utiliser RCX comme compteur. Il va le décrémenter au lieu de l'incrémenter. On le met donc au maximum (valeur maximum pour un registre 64 bits), en le mettant à 0 puis en inversant tous ses bits (de 0 à 1). \
 	Ex : 
-	<code>
+	```asm
 		mov rcx 0 
 		not rcx 
-	</code>
+	```
 	-	l'indicateur DF - Direction Flag _ spécifie la direction dans laquelle la string sera lue. Il faut le mettre à 0 (en cas de modif préalable) pour qu'elle soit lue de gauche à droite, avec 'cld'. \
 	'cld' met le DF à 0 pour RDI et RSI à la fois. \
 Scan byte par byte :
@@ -90,9 +90,9 @@ Scan byte par byte :
 	Le byte scanné est incrémenté tout seul. \
 	rcx est décrémenté tout seul. \
 	Ex: 
-	<code>
+	```asm
 		< repnz scasb > 
-	</code>
+	```
 Fin:
 	- on réinverse rcx avec 'not' pour avoir la valeur du compteur. \
 	On peut la décrémenter si besoin de retirer \0. 
@@ -110,11 +110,11 @@ Autres opérateurs :
 <strong>#Appeler une fonction externe</strong> \
 	- déclarer la fonction sous la déclaration de la section. \
 	Ex : 
-	<code>
+	```asm
 		section .text 
 			global _ft_strdup 
 			extern _ft_strlen 
-	</code>
+	```
 	- Appel : 'call _ft_strlen'. Ce call va prendre en argument ce qu'il y a dans rdi, si la fonction prend un argument. Puis rsi si 2 arguments appelés etc.... - Verifier si ordre kernel ou ordre "user application". \
 	- la fonction return dans rax. \
 	- Avant d'appeler la fonction qui appelle rdi, si on veut sauver un rdi précédent : push rdi. Puis après appel fonction, pop rdi. \
@@ -126,10 +126,10 @@ Autres opérateurs :
 
 <strong>#Pratiques</strong> \
 	- Check if nul : \
-	<code>
+	```asm
 		cmp	rdi, 0 
 		je end 
-	</code>
+	```
 
 <strong>#Ressources</strong> 
 - list of x86 instructions : https://c9x.me/x86/ \
