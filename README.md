@@ -84,6 +84,7 @@ Préalable : \
 ```
 -	l'indicateur DF - Direction Flag _ spécifie la direction dans laquelle la string sera lue. Il faut le mettre à 0 (en cas de modif préalable) pour qu'elle soit lue de gauche à droite, avec 'cld'. \
 	'cld' met le DF à 0 pour RDI et RSI à la fois. \
+
 Scan byte par byte :
 	- l'operateur 'scasb' prend le premier byte de rdi (sans besoin de le spécifier). Si je veux utiliser rsi ou autre registre, il faut mov dans rdi. \
 	- l'opérateur 'repnz'(repeat if not zero) : tant que le byte n'est pas egal à 0 (comme pour jz, peu importe valeur de ZF, on regarde la valeur réelle du byte), repeat. \
@@ -109,19 +110,19 @@ Autres opérateurs :
 
 <strong>#Appeler une fonction externe</strong> \
 	- déclarer la fonction sous la déclaration de la section. \
-	Ex : \
+	Ex : 
 ```asm
 	section .text 
 		global _ft_strdup 
 		extern _ft_strlen 
 ```
-- Appel : 'call _ft_strlen'. Ce call va prendre en argument ce qu'il y a dans rdi, si la fonction prend un argument. Puis rsi si 2 arguments appelés etc.... - Verifier si ordre kernel ou ordre "user application". \
-- la fonction return dans rax. \
-- Avant d'appeler la fonction qui appelle rdi, si on veut sauver un rdi précédent : push rdi. Puis après appel fonction, pop rdi. \
-Ex : voir ft_strdup :  \
-	- j'appelle strlen, qui renvoie la len à malloc. strlen a pris en parametre rdi, qui contient la string inputée à strdup. \
-	- je push rdi sur la stack (car avant l'adresse de la string etait uniquement dans la stack frame) pour garder cette string, puis dans rdi je met la len à malloc, car malloc va prendre en parametre ce qu'il y a dans rdi, et non ce qu'il a dans rax. \
-	- le malloc return, je pop rdi pour recuperer ma rdi de la stack. \
+- Appel : 'call _ft_strlen'. Ce call va prendre en argument ce qu'il y a dans rdi, si la fonction prend un argument. Puis rsi si 2 arguments appelés etc.... - Verifier si ordre kernel ou ordre "user application". 
+- la fonction return dans rax. 
+- Avant d'appeler la fonction qui appelle rdi, si on veut sauver un rdi précédent : push rdi. Puis après appel fonction, pop rdi. 
+Ex : voir ft_strdup :  
+	- j'appelle strlen, qui renvoie la len à malloc. strlen a pris en parametre rdi, qui contient la string inputée à strdup. 
+	- je push rdi sur la stack (car avant l'adresse de la string etait uniquement dans la stack frame) pour garder cette string, puis dans rdi je met la len à malloc, car malloc va prendre en parametre ce qu'il y a dans rdi, et non ce qu'il a dans rax. 
+	- le malloc return, je pop rdi pour recuperer ma rdi de la stack. 
 	- rdi sera ma source a copier avec strcpy, je la met dans rsi (arg2) et je met l'adresse returned par malloc dans rdi (arg 1 de strcpy). 
 
 <strong>#Pratiques</strong> \
