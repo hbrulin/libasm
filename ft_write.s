@@ -17,7 +17,7 @@ _ft_write:
 
 	;sub rsp, rdx ;alloue nbyte dans la pile pour le buf -> pas besoin d'allouer de la stack car on ne read pas dans un buffer
 
-	mov rax, 0x000004 ;nb correspondant a l'appel systeme de write
+	mov rax, 0x2000004 ;nb correspondant a l'appel systeme de write
 	syscall ;prend tout seul les 3 arguments dans rdi, rsi, rdx ;car le kernel a les memes registres pour 1, 2 et 3 arguments : 
 	;User-level applications use as integer registers for passing the sequence %rdi, %rsi, %rdx, %rcx, %r8 and %r9. The kernel interface uses %rdi, %rsi, %rdx, %r10, %r8 and %r9.
 
