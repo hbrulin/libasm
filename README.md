@@ -102,7 +102,6 @@ Autres opérateurs :
 	- rax prend le retour du syscall. Pour write ou read, nb de bytes écrites ou lues. 
 
 #Appeler une fonction externe
-
 	- déclarer la fonction sous la déclaration de la section. \
 	Ex : \
 		section .text \
