@@ -96,11 +96,11 @@ calc:
 	mov rax, r10 ; je remet ma len dans rax qui recup a chaque fois le result de mul
 	mul r8 ;multiplie r8 par ce qui est dans al
 	mov r8, rax ;rax result de mul
-	mov rbx, 0
-	movsx rbx, BYTE [rdi + rcx]
+	mov rbx, 0 ;pas besoin car movsx
+	movsx rbx, BYTE [rdi + rcx] ;sinon mov bl
 	add r8, rbx
-	mov rbx, 0
-	movsx rbx, BYTE [rsi + r12]
+	mov rbx, 0 ;mais movsx
+	movsx rbx, BYTE [rsi + r12] ;idem
 	sub r8, rbx
 	inc rcx
 	jmp comp
