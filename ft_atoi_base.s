@@ -10,11 +10,11 @@ _ft_atoi_base:
 	je end ;renvoie 0 si pas de base
 
 init:
-	mov rcx, -1 ;compteur str, a -1 car pour le whitespace on incremente au debut
-	mov r12, -1 ;compteur base
+	mov rcx, 0 ;compteur str
+	mov r12, 0 ;compteur base
 	mov r8, 0 ;nb
-	mov r9, -1 ;neg
-;checks
+	mov r9, 1 ;neg
+	jmp whitespace ;pour eviter d'incrementer
 
 skip:
 	inc rcx
@@ -32,12 +32,12 @@ whitespace:
 	je skip
 	cmp BYTE [rdi + rcx], 12
 	je skip
-	jmp skip_base
+	jmp check_base
 
 skip_base:
 	inc r12
 
-whitespace_base:
+check_base:
 	cmp BYTE [rsi + r12], 32
 	je skip_base
 	cmp BYTE [rsi + r12], 9
@@ -50,7 +50,15 @@ whitespace_base:
 	je skip_base
 	cmp BYTE [rsi + r12], 12
 	je skip_base
+	cmp BYTE [rsi + r12], 45 ;return si signe + ou - dans base
+	je end
+	cmp BYTE [rsi + r12], 43 ;return si signe + ou - dans base
+	je end
 	jmp len
+
+
+
+
 
 len:
 	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
@@ -58,9 +66,12 @@ len:
 	call _ft_strlen ;renvoie la len dans rax -CHECK SI STRLEN NE CHANGE PAS RCX??
 	sub rax, r12
 	mov r10, rax ; je mets len dans r10, je lui retire la valeur de r12 si whitespace
+	mov rax, 0 ; je remets rax a 0 si pb de len de base, cmme ca ca return 0
+	cmp r10, 1 ;si len base == 1
+	je end
 	pop rdi ; je recup str
+	jmp check_sign ;eviter de changer neg et d'incrementer
 
-	dec rcx ;car mon compteur dans pos va etre incrementé, donc je le baisse
 neg:
 	neg r9 ;devient pos, puis revient a -1 si c'est bien neg
 pos:
