@@ -3,33 +3,49 @@ section .text
 	extern _ft_strlen
 
 _ft_atoi_base:
-
 	mov rax, 0
 	cmp rdi, 0
 	je end ;renvoie 0 si pas de str
 	cmp rsi, 0
 	je end ;renvoie 0 si pas de base
 
-	mov rcx, 0 ;compteur
+init:
+	mov rcx, -1 ;compteur, a -1 car pour le whitespace on incremente au debut
 	mov r8, 0 ;nb
 	mov r9, -1 ;neg
 ;whitespace
 ;checks
-	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
-	mov rdi, rsi ; je mets base dans rdi pour que strlen calcule la len de la base
-	call _ft_strlen ;renvoie la len dans rax
-	mov r10, rax ; je mets len dans r10
-	pop rdi ; je recup str
-	;cmp neg -> comment je fais pour avoir valeur neg vu que tout est signed?instruction neg
 
-	dec rcx ;car mon pos va etre incrementer a apres le signe, donc je le baisse
-
-neg:
-	neg r9 ;devient pos, puis revient a -1 si c'est bien neg
-
-pos:
+skip:
 	inc rcx
 
+whitespace:
+	cmp BYTE [rdi + rcx], 32
+	je skip
+	cmp BYTE [rdi + rcx], 9
+	je skip
+	cmp BYTE [rdi + rcx], 10
+	je skip
+	cmp BYTE [rdi + rcx], 13
+	je skip
+	cmp BYTE [rdi + rcx], 11
+	je skip
+	cmp BYTE [rdi + rcx], 12
+	je skip
+	jmp len
+
+len:
+	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
+	mov rdi, rsi ; je mets base dans rdi pour que strlen calcule la len de la base
+	call _ft_strlen ;renvoie la len dans rax -CHECK SI STRLEN NE CHANGE PAS RCX??
+	mov r10, rax ; je mets len dans r10
+	pop rdi ; je recup str
+
+	dec rcx ;car mon compteur dans pos va etre incrementé, donc je le baisse
+neg:
+	neg r9 ;devient pos, puis revient a -1 si c'est bien neg
+pos:
+	inc rcx
 check_sign:
 	cmp BYTE [rdi + rcx], 45 ;'-'
 	je neg
