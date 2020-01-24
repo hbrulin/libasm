@@ -45,7 +45,7 @@ Operateurs inc, dec.
 
 <strong>#mov</strong> \
 	- mov : necessite registre de tailles égales \
-	- movsx : permet de copier un registre de taille inférieure : <code> movsx rax, dl </code> 
+	- movsx/movzx : permet de copier un registre de taille inférieure : <code> movsx rax, dl </code> 
 
 <strong>#Jump</strong> \
 	- jmp -> jump à une adresse sans condition
@@ -137,4 +137,4 @@ Ex : voir ft_strdup :
 - calling conventions : https://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-i386-and-x86-6 \
 - calling conventions : https://courses.cs.washington.edu/courses/cse378/10au/sections/Section1_recap.pdf \
 - jumps : https://www.commentcamarche.net/contents/21-branchements-en-assembleur 
-
+- https://asm.developpez.com/intro/ 
