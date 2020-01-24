@@ -13,7 +13,7 @@ macho64 is object file for mac os
 Passage de paramètres par pile/stack. \
 RSP : indique l'adresse du sommet de la stack. \
 La stack est composée de stack frames, pour chaque fonction en cours d'appel avec ses variables locales. \
-On lit le contenu de la stack frame avec RBP. \
+On lit le contenu de la stack frame avec RBP. 
 ```asm
 _global_start : 
 	push rbp		;fait pointer RBP sur le sommet de la stack - sauvegarde 
@@ -103,7 +103,7 @@ Autres opérateurs :
 - rep, repe (repeat if equality), repne (repeat if not equlity), repnz (repeat if not zero) 
 
 <strong>#Faire un syscall</strong> \
-	- mov dans rax le nb correspondant à l'appel systeme : 0x2000003 read, 0x2000004 read \
+	- mov dans rax le nb correspondant à l'appel systeme : 0x2000003 read, 0x2000004 write \
 	- 'syscall' \
 	- le syscall va récupérer tout seul les arguments qui sont dans les registres : rdi (arg1), rsi (arg2), rdx (arg3), r10 (arg4), r8 (arg5), r9 (arg6) - kernel space order, pas le même que le user space order. \
 	- rax prend le retour du syscall. Pour write ou read, nb de bytes écrites ou lues. 
