@@ -12,7 +12,7 @@ _ft_atoi_base:
 
 	mov rcx, 0 ;compteur
 	mov r8, 0 ;nb
-	mov r9, 1 ;neg
+	mov r9, -1 ;neg
 ;whitespace
 ;checks
 	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
@@ -22,7 +22,19 @@ _ft_atoi_base:
 	pop rdi ; je recup str
 	;cmp neg -> comment je fais pour avoir valeur neg vu que tout est signed?instruction neg
 
-;FAIRE LE NEG
+	dec rcx ;car mon pos va etre incrementer a apres le signe, donc je le baisse
+
+neg:
+	neg r9 ;devient pos, puis revient a -1 si c'est bien neg
+
+pos:
+	inc rcx
+
+check_sign:
+	cmp BYTE [rdi + rcx], 45 ;'-'
+	je neg
+	cmp BYTE [rdi + rcx], 43 ;'+'
+	je pos
 
 comp:
 	mov rbx, 0

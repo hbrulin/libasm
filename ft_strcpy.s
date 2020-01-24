@@ -18,3 +18,5 @@ copy:
 return:
 			mov		rax, rdi				; return dst
 			ret
+
+;faire plutot dans le meme sens que strlen, avec le inc a la fin et un renvoie ver end dans cpy

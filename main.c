@@ -45,6 +45,6 @@ int main(void)
 	char *v = ft_strdup(s);
 	printf("%s\n", v);
 
-	ret = ft_atoi_base("0011", "01");
+	ret = ft_atoi_base("-10", "0123456789");
 	printf("%i\n", ret);
 }

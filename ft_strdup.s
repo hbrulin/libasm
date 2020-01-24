@@ -6,7 +6,7 @@ section .text
 
 _ft_strdup:	
 
-	call _ft_strlen ;s'exerce sur rdi?
+	call _ft_strlen ;s'exerce sur rdi
 	inc rax ;pour rajouter le \0
 	push rdi 		;saving rdi before calling a function
 	mov	rdi, rax 		;rdi = rax; (because rdi will be used by malloc), on alloue nb de bytes
