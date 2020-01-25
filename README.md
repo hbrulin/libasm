@@ -129,6 +129,35 @@ Ex : voir ft_strdup :
 	Si je ne le fais pas, il peut y avoir apres des fails de malloc.
 	- Note : si je push rdi pour le sauver, je le push sur la stack. Quand je le pop, je peux le pop dans rsi. Je ne suis pas obliger de pop en utilisant le meme registre. Je peux pop ce que j'ai push n'importe où.
 
+<strong>#mul</strong> 
+- mul multiplie le registre qui lui est passé en arg par ce qui est dans al. 
+Ex:
+```asm
+	mov rax, 5
+	mul rdi
+```
+-> rdi est multiplié par 5.
+Le résultat est envoyé dans rax.
+
+<strong>#Sections data et bss</strong> 
+- BSS :global variables et objets statiques non initialisés en entrant dans le main : à 0.
+- DATA : utilisée pour réserver de l'espace pour les objects statiques ou global variables initialisés.
+
+```asm
+unsigned char var;		; 8 bit variable uninitialized variable allocated into the .bss section.
+static int svar;		; 16 bit static uninitialized variable allocated into the .bss section.
+
+unsigned char var2 = 25;	; 8 bit initialized variable allocated into the .data section.
+static unsigned int svar2 = 3;	; 16 bit initialized variable allocated into the .data section.
+```
+
+<strong>#Heap vs stack</strong> 
+Heap variables are simply those that aren't in your stack frames. You can use any register to access them. \
+Heap use with malloc. \
+RSP and RBP both point to adresses on the stack : RSP points to top of stack. RBP points to the bottom of the stack frame. \
+Usually RBP is not necessary so you can use it as another general purpose processor. \
+The entire memory is organized into 4 segments. Code, Data, Stack and Extra. The heap is for multipurpose storage (like dynamic allocation (malloc etc)) while stack is used specifically for instruction pointer and for storing your variables (push) when you call another procedure/function (like during recursion). The data segment is for global variables and static variables.
+
 <strong>#Pratiques</strong> \
 	- Check if nul : 
 ```asm
@@ -142,20 +171,10 @@ Ex : voir ft_strdup :
 	jz return ;si le return de malloc est 0, alors return
 ```
 
-<strong>#mul</strong> \
-- mul multiplie le registre qui lui est passé en arg par ce qui est dans al. 
-Ex:
-```asm
-	mov rax, 5
-	mul rdi
-```
--> rdi est multiplié par 5.
-Le résultat est envoyé dans rax.
-
-
 <strong>#Ressources</strong> 
 - list of x86 instructions : https://c9x.me/x86/ \
 - calling conventions : https://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-i386-and-x86-6 \
 - calling conventions : https://courses.cs.washington.edu/courses/cse378/10au/sections/Section1_recap.pdf \
 - jumps : https://www.commentcamarche.net/contents/21-branchements-en-assembleur 
 - https://asm.developpez.com/intro/ 
+- heap vs stack : https://stackoverflow.com/questions/13016736/assembly-stack-vs-heap , https://stackoverflow.com/questions/6204834/heap-vs-data-segment-vs-stack-allocation 
