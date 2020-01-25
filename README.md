@@ -184,3 +184,4 @@ The entire memory is organized into 4 segments. Code, Data, Stack and Extra. The
 - jumps : https://www.commentcamarche.net/contents/21-branchements-en-assembleur 
 - https://asm.developpez.com/intro/ 
 - heap vs stack : https://stackoverflow.com/questions/13016736/assembly-stack-vs-heap , https://stackoverflow.com/questions/6204834/heap-vs-data-segment-vs-stack-allocation 
+- linked lists : https://codehost.wordpress.com/2011/07/29/59/

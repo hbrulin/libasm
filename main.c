@@ -32,34 +32,97 @@ void printf_list(t_list *list)
 int main(void)
 {
 	char *s = "bonjour";
+	char *t = NULL;
+
+	printf("FT_STRLEN\n");
 	int ret = ft_strlen(s);
 	printf("%i\n", ret);
 
+	printf("\n");
+
+	printf("FT_STRCPY\n");
 	char cpy[7];
 	ft_strcpy(cpy, s);
 	printf("%s\n", cpy);
 
+	printf("\n");
+
+	printf("FT_STRCMP_SAME\n");
 	ret = ft_strcmp(cpy, s);
 	printf("%i\n", ret);
 
+	printf("\n");
+
+	printf("FT_STRCMP_DIFF\n");
 	ret = ft_strcmp("bonjout", s);
 	printf("%i\n", ret);
 
+	printf("\n");
+
+	printf("FT_WRITE\n");
 	ft_write(1, "c", 1);
 	ft_write(1, "\n", 1);
 
+	printf("\n");
+
+	printf("FT_READ\n");
 	int fd = open("ft_strlen.s", O_RDONLY);
 	char buf[100];
 	ret = ft_read(fd, buf, 10);
 	printf("%i\n", ret);
 	printf("%s\n", buf);
 
+	printf("\n");
+
+	printf("FT_STRDUP\n");
 	char *v = ft_strdup(s);
 	printf("%s\n", v);
 
-	ret = ft_atoi_base("ff", "abcdef");
+	printf("\n");
+
+	printf("FT_STRDUP_NULL_INPUT\n");
+	v = ft_strdup(t);
+	printf("%s\n", v);
+
+	printf("\n");
+
+	//printf("ATOI_BASE\n");
+	//ret = ft_atoi_base("ff", "abcdef");
+	//printf("%i\n", ret);
+
+	printf("\n");
+
+	//printf("ATOI_BASE_NEG\n");
+	//ret = ft_atoi_base("-10", "0123456789");
+	//printf("%i\n", ret);
+
+	printf("\n");
+
+	//printf("ATOI_BASE_WRONG_BASE\n");
+	//ret = ft_atoi_base("ff", "abcdeff");
+	//printf("%i\n", ret);
+
+	printf("\n");
+
+	//printf("ATOI_BASE_WRONG_STR\n");
+	//ret = ft_atoi_base("ffg", "abcdef");
+	//printf("%i\n", ret);
+
+	printf("\n");
+
+	printf("ATOI_BASE_WHITESPACE\n");
+	ret = ft_atoi_base("    0011", "01");
 	printf("%i\n", ret);
 
+	printf("\n");
+
+	printf("ATOI_BASE_MISSING\n");
+	ret = ft_atoi_base("", "abcdef");
+	printf("%i\n", ret);
+
+	printf("\n");
+
+	printf("PUSH_FRONT\n");
 	t_list	list;
 	t_list	list_next;
 	t_list	list_last;
@@ -69,11 +132,17 @@ int main(void)
 	list_next.next = &list_last;
 	list_last.data = strdup("tutu");
 	list_last.next = NULL;
-	printf_list(&list);
 	t_list	*push = &list;
-	ft_list_push_front(&push, strdup("bonjour"));
-	printf("added: `%s` (next: %p)\n", push->data, push->next);
-	ft_list_push_front(&push, strdup("salut"));
-	printf("added: `%s` (next: %p)\n", push->data, push->next);
-	printf_list(&list);
+	printf("original list :\n");
+	printf_list(push);
+	ft_list_push_front(&push, s);
+	printf("new list :\n");
+	printf_list(push);
+
+	printf("\n");
+
+	printf("PUSH_FRONT_NULL_T_LIST\n");
+	t_list *nul = NULL;
+	ft_list_push_front(&nul, s);
+	printf_list(nul);
 }

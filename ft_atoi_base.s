@@ -12,7 +12,7 @@ _ft_atoi_base:
 init:
 	mov rcx, 0 ;compteur str
 	mov r8, 0
-	mov r12, 0 ;compteur base
+	mov r12, 0;compteur base
 	mov r8, 0 ;nb
 	mov r9, 0 ;neg
 	jmp whitespace ;pour eviter d'incrementer
