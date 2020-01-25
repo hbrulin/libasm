@@ -93,6 +93,12 @@ int main(void)
 
 	printf("\n");
 
+	printf("ATOI_BASE_BINAIRE\n");
+	ret = ft_atoi_base("0011", "01");
+	printf("%i\n", ret);
+
+	printf("\n");
+
 	printf("ATOI_BASE_NEG\n");
 	ret = ft_atoi_base("-10", "0123456789");
 	printf("%i\n", ret);
@@ -112,7 +118,7 @@ int main(void)
 	printf("\n");
 
 	printf("ATOI_BASE_WHITESPACE\n");
-	ret = ft_atoi_base("    0011", "01");
+	ret = ft_atoi_base("12", "0123456789");
 	printf("%i\n", ret);
 
 	printf("\n");
