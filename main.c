@@ -118,7 +118,7 @@ int main(void)
 	printf("\n");
 
 	printf("ATOI_BASE_WHITESPACE\n");
-	ret = ft_atoi_base("12", "0123456789");
+	ret = ft_atoi_base("     12", "      0123456789");
 	printf("%i\n", ret);
 
 	printf("\n");
