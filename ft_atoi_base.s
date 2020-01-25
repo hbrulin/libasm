@@ -60,7 +60,7 @@ check_base:
 len:
 	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
 	mov rdi, rsi ; je mets base dans rdi pour que strlen calcule la len de la base
-	call _ft_strlen ;renvoie la len dans rax -CHECK SI STRLEN NE CHANGE PAS RCX??
+	call _ft_strlen ;renvoie la len dans rax 
 	sub rax, r12
 	mov r10, rax ; je mets len dans r10, je lui retire la valeur de r12 si whitespace
 	mov rax, 0 ; je remets rax a 0 si pb de len de base, cmme ca ca return 0
@@ -154,11 +154,9 @@ calc:
 	mov rax, r10 ; je remet ma len dans rax qui recup a chaque fois le result de mul
 	mul r8 ;multiplie r8 par ce qui est dans al
 	mov r8, rax ;rax result de mul
-	mov rbx, 0 ;pas besoin car movsx
-	movsx rbx, BYTE [rdi + rcx] ;sinon mov bl
+	movsx rbx, BYTE [rdi + rcx]
 	add r8, rbx
-	mov rbx, 0 ;mais movsx
-	movsx rbx, BYTE [rsi + r12] ;idem
+	movsx rbx, BYTE [rsi + r12]
 	sub r8, rbx
 	inc rcx
 	jmp comp
@@ -169,4 +167,3 @@ end:
 	ret
 
 
-;xor ou exclusif car si je xor la meme chose tout est a 0 acr 1 xor 1 = 0

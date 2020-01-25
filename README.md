@@ -46,9 +46,10 @@ Operateurs inc, dec.
 <strong>#mov</strong> \
 	- mov : necessite registre de tailles égales \
 	- movsx/movzx : permet de copier un registre de taille inférieure : <code> movsx rax, dl </code> 
-
+	movsx mets a 0 les bits non existants dans le registre de taille inferieur. Permet de ne pas avoir a mov 0 (out xor registre, registre), car tout est set a 0.
+	- alternative a mov R, 0 : xor R, R. OU EXCLUSIF : 1 xor 1 = 0. Mettre le meme registre va tout setter à 0. Operation plus rapide qu'un mov à 0.
 <strong>#Jump</strong> \
-	- jmp -> jump à une adresse sans condition
+	- jmp -> jump à une adresse sans condition. Utile pour eviter de passer par certaines adresses d'incrementation.
 
 <strong>#Jump conditionnels</strong> \
 L'indicateur ZF va stocker le retour des commandes cmp ou scasb. ZF est à 1 en cas d'égalité, 0 en cas d'inégalité. \
@@ -124,6 +125,9 @@ Ex : voir ft_strdup :
 	- je push rdi sur la stack (car avant l'adresse de la string etait uniquement dans la stack frame) pour garder cette string, puis dans rdi je met la len à malloc, car malloc va prendre en parametre ce qu'il y a dans rdi, et non ce qu'il a dans rax. 
 	- le malloc return, je pop rdi pour recuperer ma rdi de la stack. 
 	- rdi sera ma source a copier avec strcpy, je la met dans rsi (arg2) et je met l'adresse returned par malloc dans rdi (arg 1 de strcpy). 
+	- Attention : quand je push et pop quelque chose sur la stack, je la decale (de 8 octets si je push un registre). je dois le realigner en sub 8 de rsp. ->parfois ca segfault, cmprendre pourquoi.
+	Si je ne le fais pas, il peut y avoir apres des fails de malloc.
+	- Note : si je push rdi pour le sauver, je le push sur la stack. Quand je le pop, je peux le pop dans rsi. Je ne suis pas obliger de pop en utilisant le meme registre. Je peux pop ce que j'ai push n'importe où.
 
 <strong>#Pratiques</strong> \
 	- Check if nul : 
@@ -131,6 +135,23 @@ Ex : voir ft_strdup :
 	cmp	rdi, 0 
 	je end 
 ```
+	- Tester le malloc fail:
+```asm
+	call _malloc
+	test rax, rax ;je test rax (utile de test plutot que cmp si juste besoin de savoir si jz)
+	jz return ;si le return de malloc est 0, alors return
+```
+
+<strong>#mul</strong> \
+- mul multiplie le registre qui lui est passé en arg par ce qui est dans al. 
+Ex:
+```asm
+	mov rax, 5
+	mul rdi
+```
+-> rdi est multiplié par 5.
+Le résultat est envoyé dans rax.
+
 
 <strong>#Ressources</strong> 
 - list of x86 instructions : https://c9x.me/x86/ \
