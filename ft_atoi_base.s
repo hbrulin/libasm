@@ -11,9 +11,10 @@ _ft_atoi_base:
 
 init:
 	mov rcx, 0 ;compteur str
+	mov r8, 0
 	mov r12, 0 ;compteur base
 	mov r8, 0 ;nb
-	mov r9, 1 ;neg
+	mov r9, 0 ;neg
 	jmp whitespace ;pour eviter d'incrementer
 
 skip:
@@ -56,10 +57,6 @@ check_base:
 	je end
 	jmp len
 
-
-
-
-
 len:
 	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
 	mov rdi, rsi ; je mets base dans rdi pour que strlen calcule la len de la base
@@ -70,12 +67,41 @@ len:
 	cmp r10, 1 ;si len base == 1
 	je end
 	pop rdi ; je recup str
-	jmp check_sign ;eviter de changer neg et d'incrementer
+
+	mov r13, r12 ;je stocke mon compteur pour la suite
+	mov r14, r12 ; je stocke mon compteur une deuxieme fois, pour boucle imbriquee
+	jmp check_char_base 
+
+inc_c:
+	inc r13
+	mov r14, r12
+	jmp check_char_base
+
+inc_cc:
+	inc r14
+
+check_char_base:
+	mov rbx, 0
+	mov bl, BYTE [rsi + r13] ;je stocke mon char r13
+	cmp bl, 0 ;si fin de rsi sur r13
+	je check_sign
+	cmp BYTE [rsi + r14], 0 ;si mon r14 == fin, alors j'incremente r13 et je remet r14 a 0
+	je inc_c
+	cmp r13, r14 ;si egalite des compteurs, normal qu'egalite, donc j'incremente r14
+	je inc_cc
+	cmp bl, BYTE [rsi + r14] ;je compare le char r13 a char r14, si egalite, erreur
+	je end
+	jne inc_cc ;si pas egalite, j'incremente r14
 
 neg:
-	neg r9 ;devient pos, puis revient a -1 si c'est bien neg
-pos:
+	mov r9, -1
 	inc rcx
+	jmp comp
+pos:
+	mov r9, 1
+	inc rcx
+	jmp comp
+
 check_sign:
 	cmp BYTE [rdi + rcx], 45 ;'-'
 	je neg
@@ -109,3 +135,6 @@ end:
 	mov rax, r9
 	mul r8
 	ret
+
+
+;xor ou exclusif car si je xor la meme chose tout est a 0 acr 1 xor 1 = 0

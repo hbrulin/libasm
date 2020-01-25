@@ -3,7 +3,7 @@ NAME = libasm.a
 SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s ft_atoi_base.s
 
 SFLAGS = -f macho64
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 OBJS =	$(SRCS:.s=.o)
 
@@ -14,7 +14,7 @@ $(NAME): $(OBJS) Makefile
 	@echo "$(NAME) created"
 
 %.o: %.s
-	nasm $(SFLAGS) $< -o $@
+	nasm $(SFLAGS) $< -o $@ -g
 
 clean:
 	@/bin/rm -f $(OBJS)
