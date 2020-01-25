@@ -43,6 +43,11 @@ leave remet la stack à l'état initial -> pop rbp. On récupère rbp.
 <strong>#Incrémentation, décrémentation</strong> \
 Operateurs inc, dec.
 
+<strong>#Déréférencer un pointeur</strong>
+```asm
+[rsi]
+```
+
 <strong>#mov</strong> \
 	- mov : necessite registre de tailles égales \
 	- movsx/movzx : permet de copier un registre de taille inférieure : <code> movsx rax, dl </code> 
