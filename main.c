@@ -18,6 +18,7 @@ ssize_t ft_read(int fildes, void *buf, size_t nbyte);
 char *ft_strdup(const char *s1);
 int	ft_atoi_base(char *str, char *base);
 void ft_list_push_front(t_list **begin_list, void *data);
+int ft_list_size(t_list *begin_list);
 
 
 void printf_list(t_list *list)
@@ -145,4 +146,12 @@ int main(void)
 	t_list *nul = NULL;
 	ft_list_push_front(&nul, s);
 	printf_list(nul);
+
+	printf("\n");
+
+	printf("PUSH_LIST_SIZE\n");
+	ret = ft_list_size(push);
+	printf("list 1 has %i nodes\n", ret);
+	ret = ft_list_size(nul);
+	printf("list 2 has %i nodes\n", ret);
 }
