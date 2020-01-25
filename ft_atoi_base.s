@@ -66,7 +66,7 @@ len:
 	mov rax, 0 ; je remets rax a 0 si pb de len de base, cmme ca ca return 0
 	cmp r10, 1 ;si len base == 1
 	je end
-	pop rdi ; je recup str
+	pop rdi ; je recup str ;ici si je realigne, segfault??
 
 	mov r13, r12 ;je stocke mon compteur pour la suite
 	mov r14, r12 ; je stocke mon compteur une deuxieme fois, pour boucle imbriquee
@@ -96,17 +96,49 @@ check_char_base:
 neg:
 	mov r9, -1
 	inc rcx
-	jmp comp
+	jmp init_check_str
 pos:
 	mov r9, 1
 	inc rcx
-	jmp comp
+	jmp init_check_str
+
+pos_no_sign:
+	mov r9, 1
+	jmp init_check_str
 
 check_sign:
 	cmp BYTE [rdi + rcx], 45 ;'-'
 	je neg
 	cmp BYTE [rdi + rcx], 43 ;'+'
 	je pos
+	jne pos_no_sign
+
+init_check_str:
+	mov r13, rcx ;je stocke mon compteur pour la suite
+	mov r14, r12 ; je stocke mon compteur une deuxieme fois, pour boucle imbriquee
+	mov r15, 0 ;compteur d'inegalite
+	jmp check_str
+
+inc_thirteen:
+	inc r13
+	mov r14, r12
+	mov r15, 0
+	jmp check_str
+
+inc_fourteen:
+	inc r14
+	inc r15 ;si inegalite j'augmente cet indicateur de 1
+
+check_str:
+	mov rbx, 0
+	mov bl, BYTE [rdi + r13] ;je stocke mon char de ma str r13
+	cmp r15, r10 ; si r15 == taille base, ca veut dire que le char n'est pas dans la
+	je end
+	cmp bl, 0 ;si fin de rsi sur r13
+	je comp
+	cmp bl, BYTE [rsi + r14] ; comparaison str[r13] et base[r14]
+	je inc_thirteen  ;si egalite c'est bon, je passe a r13 suivant
+	jne inc_fourteen ;sinon j'augmente r15, et je passe au char r14 suivant de la base
 
 comp:
 	mov rbx, 0
