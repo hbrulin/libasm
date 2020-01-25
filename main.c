@@ -87,27 +87,27 @@ int main(void)
 
 	printf("\n");
 
-	//printf("ATOI_BASE\n");
-	//ret = ft_atoi_base("ff", "abcdef");
-	//printf("%i\n", ret);
+	printf("ATOI_BASE\n");
+	ret = ft_atoi_base("ff", "abcdef");
+	printf("%i\n", ret);
 
 	printf("\n");
 
-	//printf("ATOI_BASE_NEG\n");
-	//ret = ft_atoi_base("-10", "0123456789");
-	//printf("%i\n", ret);
+	printf("ATOI_BASE_NEG\n");
+	ret = ft_atoi_base("-10", "0123456789");
+	printf("%i\n", ret);
 
 	printf("\n");
 
-	//printf("ATOI_BASE_WRONG_BASE\n");
-	//ret = ft_atoi_base("ff", "abcdeff");
-	//printf("%i\n", ret);
+	printf("ATOI_BASE_WRONG_BASE\n");
+	ret = ft_atoi_base("ff", "abcdeff");
+	printf("%i\n", ret);
 
 	printf("\n");
 
-	//printf("ATOI_BASE_WRONG_STR\n");
-	//ret = ft_atoi_base("ffg", "abcdef");
-	//printf("%i\n", ret);
+	printf("ATOI_BASE_WRONG_STR\n");
+	ret = ft_atoi_base("ffg", "abcdef");
+	printf("%i\n", ret);
 
 	printf("\n");
 
