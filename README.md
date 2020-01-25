@@ -164,6 +164,7 @@ The entire memory is organized into 4 segments. Code, Data, Stack and Extra. The
 	cmp	rdi, 0 
 	je end 
 ```
+
 	- Tester le malloc fail:
 ```asm
 	call _malloc
