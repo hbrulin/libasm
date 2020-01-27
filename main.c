@@ -21,6 +21,8 @@ int main(void)
 	char	buf2[100];
 	char	buf3[100];
 	char	buf4[100];
+	char	buf5[100];
+	char	buf6[100];
 	char	*v;
 
 	v = NULL;
@@ -87,7 +89,21 @@ int main(void)
 
 	printf("\n");
 
-	printf("FT_READ_STDIN\n");
+	printf("FT_READ_WRONG_FD\n");
+	fd = open("ft_strlen.", O_RDONLY);
+	ret = ft_read(fd, buf5, 10);
+	printf("My read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf5);
+	fd = open("ft_strlen.", O_RDONLY);
+	ret = read(fd, buf6, 10);
+	printf("The real read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf6);
+
+	printf("\n");
+
+	/*printf("FT_READ_STDIN\n");
 	ret = ft_read(STDIN_FILENO, buf2, 10);
 	printf("My read does : \n");
 	printf("%i\n", ret);
@@ -98,7 +114,7 @@ int main(void)
 	printf("%i\n", ret);
 	printf("%s\n", buf3);
 
-	printf("\n");
+	printf("\n");*/
 
 	printf("FT_STRDUP\n");
 	v = ft_strdup(s);

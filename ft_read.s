@@ -4,4 +4,8 @@ section .text
 _ft_read:
 	mov	rax, 0x2000003
 	syscall
-	ret
+	jc err              ; jump if carry flag set
+    ret
+err:
+    mov rax, -0x1 ;-1
+    ret
