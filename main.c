@@ -55,6 +55,22 @@ int main(void)
 
 	printf("\n");
 
+	printf("FT_READ_STDIN\n");
+	//fd = open(STDIN_FILENO, O_RDONLY);
+	char buf2[100];
+	ret = ft_read(STDIN_FILENO, buf2, 10);
+	printf("My read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf2);
+	printf("\n");
+	char buf3[100];
+	ret = read(STDIN_FILENO, buf3, 10);
+	printf("The real read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf3);
+
+	printf("\n");
+
 	printf("FT_STRDUP\n");
 	char *v = ft_strdup(s);
 	printf("%s\n", v);
