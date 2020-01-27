@@ -1,4 +1,4 @@
-#include <stdio.h> //mettre bon header pour size_t
+#include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
@@ -9,7 +9,6 @@ typedef struct s_list
 	struct s_list *next;
 }				t_list;
 
-
 size_t ft_strlen(const char *s);
 char *ft_strcpy(char * dst, const char * src);
 int ft_strcmp(const char *s1, const char *s2);
@@ -19,7 +18,6 @@ char *ft_strdup(const char *s1);
 int	ft_atoi_base(char *str, char *base);
 void ft_list_push_front(t_list **begin_list, void *data);
 int ft_list_size(t_list *begin_list);
-void	ft_list_remove_if(t_list **begin_lst, void *data_ref, int (*cmp)());
 
 void printf_list(t_list *list)
 {

@@ -1,4 +1,4 @@
-#include <stdio.h> //mettre bon header pour size_t
+#include <stdio.h> 
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
@@ -14,15 +14,22 @@ int main(void)
 {
 	char *s = "bonjour";
 	char *t = NULL;
+	int ret;
+	char cpy[7];
+	int fd;
+	char buf[100];
+	char buf2[100];
+	char buf3[100];
+	char buf4[100];
+	char *v = ft_strdup(s);
 
 	printf("FT_STRLEN\n");
-	int ret = ft_strlen(s);
+	ret = ft_strlen(s);
 	printf("%i\n", ret);
 
 	printf("\n");
 
 	printf("FT_STRCPY\n");
-	char cpy[7];
 	ft_strcpy(cpy, s);
 	printf("%s\n", cpy);
 
@@ -41,29 +48,36 @@ int main(void)
 	printf("\n");
 
 	printf("FT_WRITE\n");
+	printf("My write does : \n");
 	ft_write(1, "c", 1);
 	ft_write(1, "\n", 1);
+	printf("The real write does : \n");
+	write(1, "c", 1);
+	write(1, "\n", 1);
 
 	printf("\n");
 
 	printf("FT_READ\n");
-	int fd = open("ft_strlen.s", O_RDONLY);
-	char buf[100];
+	fd = open("ft_strlen.s", O_RDONLY);
 	ret = ft_read(fd, buf, 10);
+	printf("My read does : \n");
 	printf("%i\n", ret);
 	printf("%s\n", buf);
+	fd = open("ft_strlen.s", O_RDONLY);
+	ret = read(fd, buf4, 10);
+	printf("The real read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf4);
+
 
 	printf("\n");
 
 	printf("FT_READ_STDIN\n");
-	//fd = open(STDIN_FILENO, O_RDONLY);
-	char buf2[100];
 	ret = ft_read(STDIN_FILENO, buf2, 10);
 	printf("My read does : \n");
 	printf("%i\n", ret);
 	printf("%s\n", buf2);
 	printf("\n");
-	char buf3[100];
 	ret = read(STDIN_FILENO, buf3, 10);
 	printf("The real read does : \n");
 	printf("%i\n", ret);
@@ -72,7 +86,6 @@ int main(void)
 	printf("\n");
 
 	printf("FT_STRDUP\n");
-	char *v = ft_strdup(s);
 	printf("%s\n", v);
 
 	printf("\n");
