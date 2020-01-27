@@ -61,10 +61,10 @@ len:
 	push rdi ;je save rdi (str) car ma ft_strlen va le prendre en arg
 	mov rdi, rsi ; je mets base dans rdi pour que strlen calcule la len de la base
 	call _ft_strlen ;renvoie la len dans rax 
-	sub rax, r12
-	mov r10, rax ; je mets len dans r10, je lui retire la valeur de r12 si whitespace
+	sub rax, r12 ; je lui retire la valeur de r12 si whitespace
+	mov r10, rax ; je mets len dans r10
 	mov rax, 0 ; je remets rax a 0 si pb de len de base, cmme ca ca return 0
-	cmp r10, 1 ;si len base == 1
+	cmp r10, 0 ;si len base == 1
 	je end
 	pop rdi ; je recup str ;ici si je realigne, segfault??
 

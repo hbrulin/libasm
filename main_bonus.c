@@ -219,7 +219,7 @@ int			main(void)
 	printf("\n");
 
 	printf("ATOI_BASE_BASE_LEN_1\n");
-	ret = ft_atoi_base("ff", "f");
+	ret = ft_atoi_base("2", "2");
 	printf("%i\n", ret);
 
 	printf("\n");
