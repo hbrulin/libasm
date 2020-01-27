@@ -69,7 +69,7 @@ Les jump conditionnels vont changer le registre RIP, qui stocke l'adresse suivan
 		- JA : est supérieur (a > b). \
 		- JAE ou JNB ou JNC : est supérieur ou égal (a => b). \
 		- JB ou JC : est inférieur (a < b). \
-		- JBE : est inférieur ou égal (a <= b). \
+		- JBE : est inférieur ou égal (a <= b). 
 - Signé :
 		- JG : est supérieur (a > b). \
 		- JGE : est supérieur ou égal (a => b). \
