@@ -14,7 +14,6 @@ char *ft_strdup(const char *s1);
 int main(void)
 {
 	char *s = "bonjour";
-	char *t;
 	int ret;
 	char cpy[7];
 	int fd;
@@ -24,7 +23,6 @@ int main(void)
 	char buf4[100];
 	char *v;
 
-	t = NULL;
 	v = NULL;
 
 	printf("FT_STRLEN\n");
@@ -67,9 +65,11 @@ int main(void)
 	printf("My write does : \n");
 	ft_write(1, "c", 1);
 	ft_write(1, "\n", 1);
+	ft_write(1, "", 1);
 	printf("The real write does : \n");
 	write(1, "c", 1);
 	write(1, "\n", 1);
+	write(1, "", 1);
 
 	printf("\n");
 
@@ -102,12 +102,6 @@ int main(void)
 
 	printf("FT_STRDUP\n");
 	v = ft_strdup(s);
-	printf("%s\n", v);
-
-	printf("\n");
-
-	printf("FT_STRDUP_NULL_INPUT\n");
-	v = ft_strdup(t);
 	printf("%s\n", v);
 
 	free(v);

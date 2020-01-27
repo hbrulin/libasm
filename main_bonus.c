@@ -32,7 +32,6 @@ void printf_list(t_list *list)
 int main(void)
 {
 	char *s = "hello";
-	char *t = NULL;
 	int ret;
 	char cpy[7];
 	int fd;
@@ -112,13 +111,6 @@ int main(void)
 	printf("%s\n", v);
 
 	printf("\n");
-
-	free(v);
-	v = NULL;
-
-	printf("FT_STRDUP_NULL_INPUT\n");
-	v = ft_strdup(t);
-	printf("%s\n", v);
 
 	printf("ATOI_BASE\n");
 	ret = ft_atoi_base("ff", "abcdef");
