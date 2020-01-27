@@ -171,6 +171,5 @@ int main(void)
 	printf("PUSH_LIST_SIZE_NULL\n");
 	ret = ft_list_size(t);
 	printf("list has %i nodes\n", ret);
-
 	return (0);
 }

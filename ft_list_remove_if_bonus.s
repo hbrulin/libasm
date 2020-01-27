@@ -12,7 +12,11 @@ move:
 del:
 	mov rcx, [rdi + 16] ;j'assigne a rcx le node suivant
 	mov r14, [rdi + 8] ;je save le next precedent
+	push rdi
+	push rsi
 	call _free ;va prendre rdi
+	pop rdi
+	pop rsi
 	mov r14, rcx ;set next precedent a rcx
 	mov rdi, rcx
 
