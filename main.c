@@ -38,6 +38,10 @@ int main(void)
 	printf("\n");
 
 	printf("FT_STRCPY\n");
+	printf("My strcpy does : \n");
+	ft_strcpy(cpy, s);
+	printf("%s\n", cpy);
+	printf("The real strcpy does : \n");
 	ft_strcpy(cpy, s);
 	printf("%s\n", cpy);
 
@@ -58,7 +62,17 @@ int main(void)
 	ret = ft_strcmp("bonjout", s);
 	printf("%i\n", ret);
 	printf("The real strcmp does : \n");
-	ret = ft_strcmp("bonjout", s);
+	ret = strcmp("bonjout", s);
+	printf("%i\n", ret);
+
+	printf("\n");
+
+	printf("FT_STRCMP_DIFF_SWITCH\n");
+	printf("My strcmp does : \n");
+	ret = ft_strcmp(s, "bonjout");
+	printf("%i\n", ret);
+	printf("The real strcmp does : \n");
+	ret = strcmp(s, "bonjout");
 	printf("%i\n", ret);
 
 	printf("\n");
