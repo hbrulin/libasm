@@ -42,8 +42,10 @@ int main(void)
 	char *v;
 	t_list *lst;
 	t_list *tmp;
+	t_list *t;
 	
 	lst = NULL;
+	t = NULL;
 	v = NULL;
 
 	printf("FT_STRLEN\n");
@@ -164,7 +166,11 @@ int main(void)
 
 	printf("PUSH_LIST_SIZE\n");
 	ret = ft_list_size(lst);
-	printf("list 1 has %i nodes\n", ret);
-	
+	printf("list has %i nodes\n", ret);
+
+	printf("PUSH_LIST_SIZE_NULL\n");
+	ret = ft_list_size(t);
+	printf("list has %i nodes\n", ret);
+
 	return (0);
 }

@@ -5,6 +5,8 @@ _ft_list_size:
 
 ;rdi begin list
 	xor rax, rax
+	cmp rdi, 0
+	jz end
 
 inc:
 	mov	rdi, [rdi + 8] ; rdi = rdi->next
