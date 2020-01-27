@@ -31,7 +31,7 @@ void		printf_list(t_list *list)
 
 int			main(void)
 {
-	char	*s = "hello";
+	char	*s = "bonjour";
 	int		ret;
 	char	cpy[7];
 	int		fd;
@@ -60,6 +60,10 @@ int			main(void)
 	printf("\n");
 
 	printf("FT_STRCPY\n");
+	printf("My strcpy does : \n");
+	ft_strcpy(cpy, s);
+	printf("%s\n", cpy);
+	printf("The real strcpy does : \n");
 	ft_strcpy(cpy, s);
 	printf("%s\n", cpy);
 
@@ -80,18 +84,63 @@ int			main(void)
 	ret = ft_strcmp("bonjout", s);
 	printf("%i\n", ret);
 	printf("The real strcmp does : \n");
-	ret = ft_strcmp("bonjout", s);
+	ret = strcmp("bonjout", s);
+	printf("%i\n", ret);
+
+	printf("\n");
+
+	printf("FT_STRCMP_DIFF_SWITCH\n");
+	printf("My strcmp does : \n");
+	ret = ft_strcmp(s, "bonjout");
+	printf("%i\n", ret);
+	printf("The real strcmp does : \n");
+	ret = strcmp(s, "bonjout");
 	printf("%i\n", ret);
 
 	printf("\n");
 
 	printf("FT_WRITE\n");
 	printf("My write does : \n");
-	ft_write(1, "c", 1);
-	ft_write(1, "\n", 1);
+	ret = ft_write(1, "c", 1);
+	printf("\n");
+	printf("%i\n", ret);
+	ret = ft_write(1, "\n", 1);
+	printf("%i\n", ret);
+	ret = ft_write(1, "", 1);
+	printf("%i\n", ret);
+	ret = ft_write(1, "bonjour", 7);
+	printf("\n");
+	printf("%i\n", ret);
+	printf("\n");
 	printf("The real write does : \n");
-	write(1, "c", 1);
-	write(1, "\n", 1);
+	ret = write(1, "c", 1);
+	printf("\n");
+	printf("%i\n", ret);
+	ret = write(1, "\n", 1);
+	printf("%i\n", ret);
+	ret = write(1, "", 1);
+	printf("%i\n", ret);
+	ret = write(1, "bonjour", 7);
+	printf("\n");
+	printf("%i\n", ret);
+
+	printf("\n");
+
+	printf("FT_WRITE_WRONG_FD\n");
+	printf("My write does : \n");
+	ret = ft_write(18, "c", 1);
+	printf("%i\n", ret);
+	printf("\n");
+	printf("The real write does : \n");
+	ret = write(18, "c", 1);
+	printf("%i\n", ret);
+
+	printf("\n");
+
+	printf("FT_WRITE_FILE\n");
+	fd = open("txt.txt", O_WRONLY);
+	ret = ft_write(fd, "bonjour", 7);
+	printf("Written in file");
 
 	printf("\n");
 
@@ -139,6 +188,9 @@ int			main(void)
 	printf("FT_STRDUP\n");
 	v = ft_strdup(s);
 	printf("%s\n", v);
+
+	free(v);
+	v = NULL;
 
 	printf("\n");
 
