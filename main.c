@@ -4,24 +4,24 @@
 #include <string.h>
 #include <stdlib.h>
 
-size_t ft_strlen(const char *s);
-char *ft_strcpy(char * dst, const char * src);
-int ft_strcmp(const char *s1, const char *s2);
-ssize_t ft_write(int fildes, const void *buf, size_t nbyte);
-ssize_t ft_read(int fildes, void *buf, size_t nbyte);
-char *ft_strdup(const char *s1);
+size_t		ft_strlen(const char *s);
+char		*ft_strcpy(char * dst, const char * src);
+int			ft_strcmp(const char *s1, const char *s2);
+ssize_t		ft_write(int fildes, const void *buf, size_t nbyte);
+ssize_t		ft_read(int fildes, void *buf, size_t nbyte);
+char		*ft_strdup(const char *s1);
 
 int main(void)
 {
-	char *s = "bonjour";
-	int ret;
-	char cpy[7];
-	int fd;
-	char buf[100];
-	char buf2[100];
-	char buf3[100];
-	char buf4[100];
-	char *v;
+	char	*s = "bonjour";
+	int		ret;
+	char	cpy[7];
+	int		fd;
+	char	buf[100];
+	char	buf2[100];
+	char	buf3[100];
+	char	buf4[100];
+	char	*v;
 
 	v = NULL;
 

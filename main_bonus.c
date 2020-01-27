@@ -4,23 +4,23 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct s_list
+typedef	struct		s_list
 {
-	void	*data;
-	struct s_list *next;
-}				t_list;
+	void			*data;
+	struct s_list	*next;
+}					t_list;
 
-size_t ft_strlen(const char *s);
-char *ft_strcpy(char * dst, const char * src);
-int ft_strcmp(const char *s1, const char *s2);
-ssize_t ft_write(int fildes, const void *buf, size_t nbyte);
-ssize_t ft_read(int fildes, void *buf, size_t nbyte);
-char *ft_strdup(const char *s1);
-int	ft_atoi_base(char *str, char *base);
-void ft_list_push_front(t_list **begin_list, void *data);
-int ft_list_size(t_list *begin_list);
+size_t		ft_strlen(const char *s);
+char		*ft_strcpy(char * dst, const char * src);
+int			ft_strcmp(const char *s1, const char *s2);
+ssize_t		ft_write(int fildes, const void *buf, size_t nbyte);
+ssize_t		ft_read(int fildes, void *buf, size_t nbyte);
+char		*ft_strdup(const char *s1);
+int			ft_atoi_base(char *str, char *base);
+void		ft_list_push_front(t_list **begin_list, void *data);
+int			ft_list_size(t_list *begin_list);
 
-void printf_list(t_list *list)
+void		printf_list(t_list *list)
 {
 	while (list)
 	{
@@ -29,20 +29,20 @@ void printf_list(t_list *list)
 	}
 }
 
-int main(void)
+int			main(void)
 {
-	char *s = "hello";
-	int ret;
-	char cpy[7];
-	int fd;
-	char buf[100];
-	char buf2[100];
-	char buf3[100];
-	char buf4[100];
-	char *v;
-	t_list *lst;
-	t_list *tmp;
-	t_list *t;
+	char	*s = "hello";
+	int		ret;
+	char	cpy[7];
+	int		fd;
+	char	buf[100];
+	char	buf2[100];
+	char	buf3[100];
+	char	buf4[100];
+	char	*v;
+	t_list	*lst;
+	t_list	*tmp;
+	t_list	*t;
 	
 	lst = NULL;
 	t = NULL;
