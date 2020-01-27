@@ -64,6 +64,18 @@ Les jump conditionnels vont vérifier ZF. \
 	- jz : jump si la valeur comparée est 0, peut importe aue ZF soit à 1 ou 0. \
 Les jump conditionnels vont changer le registre RIP, qui stocke l'adresse suivante à exécuter.
 
+<strong>Jumps +  condition d'infériorité/supériorité</strong>
+- Non signé :
+		- JA : est supérieur (a > b), si CF=ZF=0.
+		- JAE ou JNB ou JNC : est supérieur ou égal (a => b), si CF=0.
+		- JB ou JC : est inférieur (a < b), si CF=1.
+		- JBE : est inférieur ou égal (a <= b), si CF=ZF=1.
+- Signé :
+		- JG : est supérieur (a > b), si SF=ZF=0.
+		- JGE : est supérieur ou égal (a => b), si SF=OF.
+		- JL : est inférieur (a < b), si SF<>OF.
+		- JLE : est inférieur ou égal (a <= b), si SF<>OF et ZF=1.
+
 <strong>#Acces à un caractère d'une string - Pointer Directives</strong> \
 	- opérateur BYTE - caste en un octet \
 Ex : 
@@ -134,6 +146,11 @@ Ex : voir ft_strdup :
 	Si je ne le fais pas, il peut y avoir apres des fails de malloc.
 	- Note : si je push rdi pour le sauver, je le push sur la stack. Quand je le pop, je peux le pop dans rsi. Je ne suis pas obliger de pop en utilisant le meme registre. Je peux pop ce que j'ai push n'importe où.
 
+ATTENTION : en appelant une fonction, certains registres peuvent etre modifies : scratch registers. D'autres sont préservés : preserved registers.
+Il faut push pop les scratch registers avant l'appel d'une fonction, sinon leur contenu peut être modifié.
+Preserved Registers	rbx	rsp	rbp	r12	r13	r14	r15		\
+Scratch Registers	rax	rdi	rsi	rdx	rcx	r8	r9	r10	r11
+
 <strong>#mul</strong> 
 - mul multiplie le registre qui lui est passé en arg par ce qui est dans al. 
 Ex:
@@ -186,5 +203,6 @@ The entire memory is organized into 4 segments. Code, Data, Stack and Extra. The
 - heap vs stack : https://stackoverflow.com/questions/13016736/assembly-stack-vs-heap , https://stackoverflow.com/questions/6204834/heap-vs-data-segment-vs-stack-allocation 
 - linked lists : https://codehost.wordpress.com/2011/07/29/59/
 
-<strong>#Ressources</strong> 
+<strong>#Notes</strong> 
 - list_remove_if ne marche pas
+- pb si whitespace avant une base binaire.
