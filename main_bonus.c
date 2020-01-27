@@ -43,7 +43,6 @@ int			main(void)
 	char	buf6[100];
 	char	*v;
 	t_list	*lst;
-	t_list	*tmp;
 	t_list	*t;
 	
 	lst = NULL;
@@ -124,7 +123,7 @@ int			main(void)
 
 	printf("\n");
 
-	/*printf("FT_READ_STDIN\n");
+	printf("FT_READ_STDIN\n");
 	ret = ft_read(STDIN_FILENO, buf2, 10);
 	printf("My read does : \n");
 	printf("%i\n", ret);
@@ -135,7 +134,7 @@ int			main(void)
 	printf("%i\n", ret);
 	printf("%s\n", buf3);
 
-	printf("\n");*/
+	printf("\n");
 
 	printf("FT_STRDUP\n");
 	v = ft_strdup(s);

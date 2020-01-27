@@ -33,11 +33,11 @@ fclean: clean
 	@echo "lib deleted"
 
 test:
-	gcc -c main.c
+	gcc $(CFLAGS) -c main.c
 	gcc $(CFLAGS) main.o $(NAME)
 
 test_bonus:
-	gcc -c main_bonus.c
+	gcc $(CFLAGS) -c main_bonus.c
 	gcc $(CFLAGS) main_bonus.o $(NAME)
 
 clean_bonus:
