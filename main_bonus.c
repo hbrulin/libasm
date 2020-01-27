@@ -32,15 +32,29 @@ int main(void)
 {
 	char *s = "bonjour";
 	char *t = NULL;
+	int ret;
+	char cpy[7];
+	int fd;
+	char buf[100];
+	char buf2[100];
+	char buf3[100];
+	char buf4[100];
+	char *v = ft_strdup(s);
+	t_list	list;
+	t_list	list_next;
+	t_list	list_last;
+	t_list	*push;
+	t_list *nul;
 
+	push = NULL;
+	nul = NULL;
 	printf("FT_STRLEN\n");
-	int ret = ft_strlen(s);
+	ret = ft_strlen(s);
 	printf("%i\n", ret);
 
 	printf("\n");
 
 	printf("FT_STRCPY\n");
-	char cpy[7];
 	ft_strcpy(cpy, s);
 	printf("%s\n", cpy);
 
@@ -59,22 +73,44 @@ int main(void)
 	printf("\n");
 
 	printf("FT_WRITE\n");
+	printf("My write does : \n");
 	ft_write(1, "c", 1);
 	ft_write(1, "\n", 1);
+	printf("The real write does : \n");
+	write(1, "c", 1);
+	write(1, "\n", 1);
 
 	printf("\n");
 
 	printf("FT_READ\n");
-	int fd = open("ft_strlen.s", O_RDONLY);
-	char buf[100];
+	fd = open("ft_strlen.s", O_RDONLY);
 	ret = ft_read(fd, buf, 10);
+	printf("My read does : \n");
 	printf("%i\n", ret);
 	printf("%s\n", buf);
+	fd = open("ft_strlen.s", O_RDONLY);
+	ret = read(fd, buf4, 10);
+	printf("The real read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf4);
+
+
+	printf("\n");
+
+	printf("FT_READ_STDIN\n");
+	ret = ft_read(STDIN_FILENO, buf2, 10);
+	printf("My read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf2);
+	printf("\n");
+	ret = read(STDIN_FILENO, buf3, 10);
+	printf("The real read does : \n");
+	printf("%i\n", ret);
+	printf("%s\n", buf3);
 
 	printf("\n");
 
 	printf("FT_STRDUP\n");
-	char *v = ft_strdup(s);
 	printf("%s\n", v);
 
 	printf("\n");
@@ -82,8 +118,6 @@ int main(void)
 	printf("FT_STRDUP_NULL_INPUT\n");
 	v = ft_strdup(t);
 	printf("%s\n", v);
-
-	printf("\n");
 
 	printf("ATOI_BASE\n");
 	ret = ft_atoi_base("ff", "abcdef");
@@ -128,26 +162,22 @@ int main(void)
 	printf("\n");
 
 	printf("PUSH_FRONT\n");
-	t_list	list;
-	t_list	list_next;
-	t_list	list_last;
 	list.data = strdup("toto");
 	list.next = &list_next;
 	list_next.data = strdup("tata");
 	list_next.next = &list_last;
 	list_last.data = strdup("tutu");
 	list_last.next = NULL;
-	t_list	*push = &list;
-	printf("original list :\n");
+	push = &list;
+	printf("Original list :\n");
 	printf_list(push);
 	ft_list_push_front(&push, s);
-	printf("new list :\n");
+	printf("New list :\n");
 	printf_list(push);
 
 	printf("\n");
 
 	printf("PUSH_FRONT_NULL_T_LIST\n");
-	t_list *nul = NULL;
 	ft_list_push_front(&nul, s);
 	printf_list(nul);
 
@@ -158,4 +188,6 @@ int main(void)
 	printf("list 1 has %i nodes\n", ret);
 	ret = ft_list_size(nul);
 	printf("list 2 has %i nodes\n", ret);
+
+	return (0);
 }
