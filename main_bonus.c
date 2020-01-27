@@ -48,8 +48,13 @@ int main(void)
 
 	push = NULL;
 	nul = NULL;
+
 	printf("FT_STRLEN\n");
 	ret = ft_strlen(s);
+	printf("My strlen does : \n");
+	printf("%i\n", ret);
+	printf("The real strlen does : \n");
+	ret = strlen(s);
 	printf("%i\n", ret);
 
 	printf("\n");
@@ -61,12 +66,20 @@ int main(void)
 	printf("\n");
 
 	printf("FT_STRCMP_SAME\n");
+	printf("My strcmp does : \n");
 	ret = ft_strcmp(cpy, s);
+	printf("%i\n", ret);
+	printf("The real strcmp does : \n");
+	ret = strcmp(cpy, s);
 	printf("%i\n", ret);
 
 	printf("\n");
 
 	printf("FT_STRCMP_DIFF\n");
+	printf("My strcmp does : \n");
+	ret = ft_strcmp("bonjout", s);
+	printf("%i\n", ret);
+	printf("The real strcmp does : \n");
 	ret = ft_strcmp("bonjout", s);
 	printf("%i\n", ret);
 
@@ -93,20 +106,6 @@ int main(void)
 	printf("The real read does : \n");
 	printf("%i\n", ret);
 	printf("%s\n", buf4);
-
-
-	printf("\n");
-
-	printf("FT_READ_STDIN\n");
-	ret = ft_read(STDIN_FILENO, buf2, 10);
-	printf("My read does : \n");
-	printf("%i\n", ret);
-	printf("%s\n", buf2);
-	printf("\n");
-	ret = read(STDIN_FILENO, buf3, 10);
-	printf("The real read does : \n");
-	printf("%i\n", ret);
-	printf("%s\n", buf3);
 
 	printf("\n");
 
