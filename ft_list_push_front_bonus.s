@@ -14,7 +14,7 @@ _ft_list_push_front:
 ;en assembleur, si la structure est a l'adresse A, alors le champ data est aussi a A et le champ ptr est a l'adresse A + nb de bits du champ data
 		mov		[rax], rsi ; rax->data = rsi
 		mov		rcx, [rdi]
-		mov		[rax + 8], rcx ; rax->next = *rdi
+		mov		[rax + 8], rcx ; rax->next = *rdi ;sinon on peut aussi utiliser QWORD
 		mov		[rdi], rax
 return:
 		ret

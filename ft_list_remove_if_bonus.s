@@ -2,7 +2,7 @@ section .text
 	global _ft_list_remove_if
 	extern _free 
 
-ft_list_remove_if:
+_ft_list_remove_if:
 	jmp comp
 
 move:
@@ -23,3 +23,5 @@ comp:
 	jnz move
 
 	ret
+
+;ne marche pas

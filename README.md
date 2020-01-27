@@ -76,7 +76,7 @@ rcx etant un compteur qu'on peut incrementer. peut être rax si c'est la valeur 
 Egalement : \
 	- Word - 2 bytes \
 	- DWORD - 4 bytes \
-	- QWORD - 8 bytes 
+	- QWORD - 8 bytes -> utile pour aller de 8 en 8, exemple pour une liste chainee
 
 <strong>#SCAS et REP</strong> \
 Permet de scanner une string byte par byte, avec une condition, sans devoir gérer l'incrémentation. \
