@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 size_t ft_strlen(const char *s);
 char *ft_strcpy(char * dst, const char * src);
@@ -13,7 +14,7 @@ char *ft_strdup(const char *s1);
 int main(void)
 {
 	char *s = "bonjour";
-	char *t = NULL;
+	char *t;
 	int ret;
 	char cpy[7];
 	int fd;
@@ -21,7 +22,10 @@ int main(void)
 	char buf2[100];
 	char buf3[100];
 	char buf4[100];
-	char *v = ft_strdup(s);
+	char *v;
+
+	t = NULL;
+	v = NULL;
 
 	printf("FT_STRLEN\n");
 	ret = ft_strlen(s);
@@ -97,6 +101,7 @@ int main(void)
 	printf("\n");
 
 	printf("FT_STRDUP\n");
+	v = ft_strdup(s);
 	printf("%s\n", v);
 
 	printf("\n");
@@ -104,6 +109,9 @@ int main(void)
 	printf("FT_STRDUP_NULL_INPUT\n");
 	v = ft_strdup(t);
 	printf("%s\n", v);
+
+	free(v);
+	v = NULL;
 
 	return (0);
 }

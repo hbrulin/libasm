@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 typedef struct s_list
 {
@@ -30,7 +31,7 @@ void printf_list(t_list *list)
 
 int main(void)
 {
-	char *s = "bonjour";
+	char *s = "hello";
 	char *t = NULL;
 	int ret;
 	char cpy[7];
@@ -39,15 +40,12 @@ int main(void)
 	char buf2[100];
 	char buf3[100];
 	char buf4[100];
-	char *v = ft_strdup(s);
-	t_list	list;
-	t_list	list_next;
-	t_list	list_last;
-	t_list	*push;
-	t_list *nul;
-
-	push = NULL;
-	nul = NULL;
+	char *v;
+	t_list *lst;
+	t_list *tmp;
+	
+	lst = NULL;
+	v = NULL;
 
 	printf("FT_STRLEN\n");
 	ret = ft_strlen(s);
@@ -110,9 +108,13 @@ int main(void)
 	printf("\n");
 
 	printf("FT_STRDUP\n");
+	v = ft_strdup(s);
 	printf("%s\n", v);
 
 	printf("\n");
+
+	free(v);
+	v = NULL;
 
 	printf("FT_STRDUP_NULL_INPUT\n");
 	v = ft_strdup(t);
@@ -160,33 +162,19 @@ int main(void)
 
 	printf("\n");
 
-	printf("PUSH_FRONT\n");
-	list.data = strdup("toto");
-	list.next = &list_next;
-	list_next.data = strdup("tata");
-	list_next.next = &list_last;
-	list_last.data = strdup("tutu");
-	list_last.next = NULL;
-	push = &list;
-	printf("Original list :\n");
-	printf_list(push);
-	ft_list_push_front(&push, s);
-	printf("New list :\n");
-	printf_list(push);
-
-	printf("\n");
-
-	printf("PUSH_FRONT_NULL_T_LIST\n");
-	ft_list_push_front(&nul, s);
-	printf_list(nul);
+	printf("LIST_PUSH_FRONT\n");
+	ft_list_push_front(&lst, "blabla");
+	ft_list_push_front(&lst, "blibli");
+	ft_list_push_front(&lst, "blob");
+	printf_list(lst);
 
 	printf("\n");
 
 	printf("PUSH_LIST_SIZE\n");
-	ret = ft_list_size(push);
+	ret = ft_list_size(lst);
 	printf("list 1 has %i nodes\n", ret);
-	ret = ft_list_size(nul);
-	printf("list 2 has %i nodes\n", ret);
+
+	while (1);
 
 	return (0);
 }
