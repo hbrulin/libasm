@@ -218,6 +218,12 @@ int			main(void)
 
 	printf("\n");
 
+	printf("ATOI_BASE_BASE_LEN_1\n");
+	ret = ft_atoi_base("ff", "f");
+	printf("%i\n", ret);
+
+	printf("\n");
+
 	printf("ATOI_BASE_WRONG_STR\n");
 	ret = ft_atoi_base("ffg", "abcdef");
 	printf("%i\n", ret);
