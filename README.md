@@ -142,7 +142,6 @@ Ex : voir ft_strdup :
 	- je push rdi sur la stack (car avant l'adresse de la string etait uniquement dans la stack frame) pour garder cette string, puis dans rdi je met la len à malloc, car malloc va prendre en parametre ce qu'il y a dans rdi, et non ce qu'il a dans rax. 
 	- le malloc return, je pop rdi pour recuperer ma rdi de la stack. 
 	- rdi sera ma source a copier avec strcpy, je la met dans rsi (arg2) et je met l'adresse returned par malloc dans rdi (arg 1 de strcpy). 
-	- Attention : quand je push et pop quelque chose sur la stack, je la decale (de 8 octets si je push un registre). je dois le realigner en sub 8 de rsp. ->parfois ca segfault, cmprendre pourquoi.
 	Si je ne le fais pas, il peut y avoir apres des fails de malloc.
 	- Note : si je push rdi pour le sauver, je le push sur la stack. Quand je le pop, je peux le pop dans rsi. Je ne suis pas obliger de pop en utilisant le meme registre. Je peux pop ce que j'ai push n'importe où.
 
@@ -202,7 +201,7 @@ The entire memory is organized into 4 segments. Code, Data, Stack and Extra. The
 - https://asm.developpez.com/intro/ 
 - heap vs stack : https://stackoverflow.com/questions/13016736/assembly-stack-vs-heap , https://stackoverflow.com/questions/6204834/heap-vs-data-segment-vs-stack-allocation 
 - linked lists : https://codehost.wordpress.com/2011/07/29/59/
-
+- https://github.com/agavrel/LibftASM
 <strong>#Notes</strong> 
 - list_remove_if ne marche pas
 - atoi_base : pb si whitespace avant une base binaire.
