@@ -193,6 +193,11 @@ The entire memory is organized into 4 segments. Code, Data, Stack and Extra. The
 	jz return ;si le return de malloc est 0, alors return
 ```
 
+<strong>#Notes sur mon atoi_base :</strong> avant d'utiliser r10, r11, r12, je ne push pas ces registres. Donc pb s'ils sont déjà utilisés par un programme tiers, qui perd sa data.
+Il y a les registres utilisé en paramètres qui sont à sauver par l’appelant s’il veut les garder, et des registres a sauver par l’appelé s’il veut les utiliser, pour ne par faire planter l'appelant.
+RDI RSI RDX RCX R8 R9 c’est a la fonction appelante de sauver.
+RBP RBX R12 R13 R14 R15 c’est a la fonction appelée de sauver.
+
 <strong>#Ressources</strong> 
 - list of x86 instructions : https://c9x.me/x86/ \
 - calling conventions : https://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-i386-and-x86-6 \
